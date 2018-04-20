@@ -4,7 +4,7 @@
 
 CXX = g++
 CPPFLAGS = -std=c++11 -Wall -I /scratch/perkins/include
-LDLIBS = -lcdk -lcurses
+LDLIBS = -l cdk -l curses
 LDFLAGS = -L /scratch/perkins/lib
 PROJECTNAME = CS3377.Program6
 EXECFILE = program6
@@ -17,5 +17,5 @@ clean:
 	rm -f $(OBJS) $(EXECFILE) 
 
 $(EXECFILE): $(OBJS)
-	$(CXX) -static -o $@ $(LDFLAGS) $(OBJS) $(LDLIBS)
+	$(CXX) -o $@ $(OBJS) $(LDFLAGS) $(LDLIBS)
 
