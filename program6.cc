@@ -9,8 +9,8 @@
 #include <stdio.h>
 #include <string>
 #include <unistd.h>
-#define MATRIX_WIDTH 2
-#define MATRIX_HEIGHT 4
+#define MATRIX_WIDTH 5
+#define MATRIX_HEIGHT 3
 #define BOX_WIDTH 15
 #define MATRIX_NAME_STRING "Text Matrix"
 
@@ -26,10 +26,10 @@ int main(int argc, char * argv[]) {
 	WINDOW *window;
 	CDKSCREEN *cdkscreen;
 	CDKMATRIX *myMatrix;
-	const char *rowTitles[MATRIX_HEIGHT+1] = { "a", "b", "c", "d", "e" };
-	const char *columnTitles[MATRIX_WIDTH+1] = { "a", "b", "c" };
-	int boxWidths[MATRIX_WIDTH+1] = {BOX_WIDTH, BOX_WIDTH, BOX_WIDTH};
-	int boxTypes[MATRIX_WIDTH+1] = {vMIXED, vMIXED, vMIXED};
+	const char *rowTitles[MATRIX_HEIGHT+1] = {"0", "a", "b", "c" };
+	const char *columnTitles[MATRIX_WIDTH+1] = {"0", "a", "b", "c", "d", "e" };
+	int boxWidths[MATRIX_WIDTH+1] = {BOX_WIDTH, BOX_WIDTH, BOX_WIDTH, BOX_WIDTH};
+	int boxTypes[MATRIX_WIDTH+1] = {vMIXED, vMIXED, vMIXED, vMIXED};
 
 	window = initscr();
 	cdkscreen = initCDKScreen(window);
@@ -76,12 +76,14 @@ int main(int argc, char * argv[]) {
 //	else {
 //		return 1;
 //	}
+	drawCDKMatrix(myMatrix, true);
+
 	string versionNumber = "Version: " + to_string(headers.versionNumber);
 	string numRecords = "NumRecords: " + to_string(headers.numRecords);
-	drawCDKMatrix(myMatrix, true);
 	setCDKMatrixCell(myMatrix, 1, 2, versionNumber.c_str());
 	setCDKMatrixCell(myMatrix, 1, 3, numRecords.c_str());
 
+	drawCDKMatrix(myMatrix, true);
 	sleep(10);
 
 	endCDK();
